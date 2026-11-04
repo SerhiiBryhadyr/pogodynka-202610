@@ -12,6 +12,10 @@
                 <td>{{ measurement.id }}</td>
             </tr>
             <tr>
+                <th>Location</th>
+                <td>{{ measurement.location.city }}, {{ measurement.location.country }}</td>
+            </tr>
+            <tr>
                 <th>Date</th>
                 <td>{{ measurement.date ? measurement.date|date('Y-m-d') : '' }}</td>
             </tr>

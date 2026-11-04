@@ -6,13 +6,41 @@
 {% block title %}Weather in {{ location.city }}, {{ location.country }}{% endblock %}
 
 {% block body %}
-    <main>
-        <h1>Weather in {{ location.city }}, {{ location.country }}</h1>
+    <h1>Weather in {{ location.city }}, {{ location.country }}</h1>
+    <p class="text-muted">Latitude: {{ location.latitude }}, longitude: {{ location.longitude }}</p>
 
-        <ul>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>Pressure</th>
+                    <th>Cloudiness</th>
+                    <th>Precipitation</th>
+                    <th>Wind speed</th>
+                    <th>Wind direction</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for measurement in measurements %}
-                <li>{{ measurement.date|date('d.m.Y') }}: {{ measurement.celsius }}&deg;C</li>
+                <tr>
+                    <td>{{ measurement.date|date('d.m.Y') }}</td>
+                    <td>{{ measurement.celsius }}&deg;C</td>
+                    <td>{{ measurement.humidity }}%</td>
+                    <td>{{ measurement.pressure }} hPa</td>
+                    <td>{{ measurement.cloudiness }}%</td>
+                    <td>{{ measurement.precipitation }} mm</td>
+                    <td>{{ measurement.windSpeed }} m/s</td>
+                    <td>{{ measurement.windDirection }}&deg;</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">No forecast available.</td>
+                </tr>
             {% endfor %}
-        </ul>
-    </main>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
