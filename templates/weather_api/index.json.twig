@@ -1,0 +1,22 @@
+{% autoescape false %}
+{
+    "city": "{{ city|e('js') }}",
+    "country": "{{ country|e('js') }}",
+    "measurements": [
+{% for m in measurements %}
+        {
+            "date": "{{ m.date|date('Y-m-d') }}",
+            "celsius": {{ m.celsius }},
+            "fahrenheit": {{ m.fahrenheit }},
+            "humidity": {{ m.humidity }},
+            "pressure": {{ m.pressure }},
+            "cloudiness": {{ m.cloudiness }},
+            "precipitation": {{ m.precipitation }},
+            "wind_speed": {{ m.windSpeed }},
+            "wind_direction": {{ m.windDirection }}
+        }{{ loop.last ? '' : ',' }}
+{% endfor %}
+    ]
+}
+{% endautoescape %}
+

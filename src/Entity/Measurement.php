@@ -83,6 +83,15 @@ class Measurement
         return $this;
     }
 
+    public function getFahrenheit(): ?float
+    {
+        if ($this->getCelsius() === null) {
+            return null;
+        }
+
+        return round((float) $this->getCelsius() * 9 / 5 + 32, 1);
+    }
+
     public function getHumidity(): ?int
     {
         return $this->humidity;
